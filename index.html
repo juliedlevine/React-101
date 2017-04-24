@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Babel Quickstart</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        #root {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel" data-presets="react">
+
+    class BSButton extends React.Component{
+        render() {
+            let classNames = ['btn'];
+            if (this.props.type) {
+                classNames.push('btn-' + this.props.type);
+            }
+            if (this.props.size) {
+                classNames.push('btn-' + this.props.size)
+            }
+            return (
+                <button className={classNames.join(' ')}>
+                    {this.props.children}
+                </button>
+            );
+        }
+    }
+
+    class BSInput extends React.Component {
+        render() {
+            return (
+                <div className="form-group">
+                    <label>{this.props.children}</label>
+                    <input type="text" className="form-control" name={this.props.name} />
+                </div>
+            )
+        }
+    }
+
+    class BSForm extends React.Component {
+        render() {
+            return (
+                <form>
+                    {this.props.children}
+                </form>
+            )
+        }
+    }
+
+    class BSCheckbox extends React.Component {
+        render() {
+            return (
+                <div className="checkbox">
+                    <label><input type="checkbox" value={this.props.value} />{this.props.children}</label>
+                </div>
+            )
+        }
+    }
+
+    class BSRadio extends React.Component {
+        render() {
+            return (
+                <div className="radio">
+                    <label><input type="radio" name="optradio" />{this.props.children}</label>
+                </div>
+            )
+        }
+    }
+
+    class BSSelect extends React.Component {
+        render() {
+            return (
+                <div className="form-group">
+                    <label>{this.props.label}</label>
+                    <select className="form-control">
+                        {this.props.children}
+                    </select>
+                </div>
+
+            )
+        }
+    }
+
+    ReactDOM.render(
+        <BSForm>
+            <BSInput name="name">What is your name?</BSInput>
+            <BSInput name="color">What is your favorite color?</BSInput>
+            <BSInput name="animal">If you were an animal, what animal would you be?</BSInput>
+            <BSCheckbox value="1">Option 1</BSCheckbox>
+            <BSCheckbox value="2">Option 2</BSCheckbox>
+            <BSCheckbox value="3">Option 3</BSCheckbox>
+            <BSRadio>True</BSRadio>
+            <BSRadio>False</BSRadio>
+            <BSSelect label="Select One">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </BSSelect>
+            <BSButton type="info">Submit</BSButton>
+        </BSForm>,
+        document.getElementById('root')
+    );
+
+    </script>
+  </body>
+</html>
